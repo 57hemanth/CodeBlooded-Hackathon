@@ -287,7 +287,7 @@ const Dashboard = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <TrendingUp className="w-8 h-8 text-blue-600 mr-3" />
-              <h1 className="text-xl font-bold text-gray-900">Restaurant Analytics</h1>
+              <h1 className="text-xl font-bold text-gray-900">Dine Metrics</h1>
             </div>
             <div className="flex space-x-4">
               <button
