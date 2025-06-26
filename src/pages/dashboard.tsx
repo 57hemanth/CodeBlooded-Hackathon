@@ -208,7 +208,7 @@ const Dashboard = () => {
   const competitorNameMap: Record<string, string> = {
     'True Black': 'Neighbourhood Favourite',
     'Roastery Coffee House': 'Premium Roast Hub',
-    'Theory Cafe': 'Theory Cafe',
+    'Theory Cafe': 'Locaker Cafe',
     'Makobrew': 'High-ValueSpot',
     "Harley's Cafe": 'Benchmark Brewhouse',
   };
@@ -472,6 +472,7 @@ const Dashboard = () => {
                 <option value="march">Last 3 Months</option>
                 <option value="march">Last 6 Months</option>
                 <option value="march">Last 1 Year</option>
+                <option value="march">Custom</option>
               </select>
             </div>
             {/* Cards */}
