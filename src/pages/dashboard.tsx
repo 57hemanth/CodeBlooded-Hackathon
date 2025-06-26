@@ -54,6 +54,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [restored, setRestored] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState('april');
+  const [showSalesModal, setShowSalesModal] = useState(false);
 
   // Restore state from localStorage on mount, but always recompute searchResults
   useEffect(() => {
@@ -244,6 +245,39 @@ const Dashboard = () => {
       </div>
     </div>
   );
+
+  // Prepare daily sales data for modal graph
+  const dailySalesLabels = monthData ? monthData.sales.map((d) => `Day ${d.day}`) : [];
+  const dailySalesAmounts = monthData ? monthData.sales.map((d) => d.amount) : [];
+  const dailySalesChartData = {
+    labels: dailySalesLabels,
+    datasets: [
+      {
+        label: 'Daily Sales',
+        data: dailySalesAmounts,
+        fill: false,
+        borderColor: 'rgb(37, 99, 235)',
+        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+        tension: 0.3,
+      },
+    ],
+  };
+  const dailySalesChartOptions = {
+    responsive: true,
+    plugins: {
+      legend: { display: true },
+      title: { display: true, text: `Daily Sales Trend` },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: true, text: 'Sales (₹)' },
+      },
+      x: {
+        title: { display: true, text: 'Day' },
+      },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -440,7 +474,11 @@ const Dashboard = () => {
             </div>
             {/* Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <div
+                className="bg-white rounded-lg shadow p-6 flex flex-col items-center cursor-pointer hover:bg-blue-50 transition"
+                onClick={() => setShowSalesModal(true)}
+                title="View daily sales graph"
+              >
                 <div className="text-xs text-gray-500 mb-1">Total Sales</div>
                 <div className="text-2xl font-bold text-blue-600">₹{totalSales.toLocaleString()}</div>
               </div>
@@ -453,6 +491,22 @@ const Dashboard = () => {
                 <div className="text-2xl font-bold text-purple-600">₹{avgSpends.toLocaleString()}</div>
               </div>
             </div>
+            {/* Modal for daily sales graph */}
+            {showSalesModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+                <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-2xl relative animate-fade-in">
+                  <button
+                    className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
+                    onClick={() => setShowSalesModal(false)}
+                    aria-label="Close"
+                  >
+                    &times;
+                  </button>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Daily Sales Trend ({selectedMonth === 'april' ? 'April' : 'March'})</h4>
+                  <Line data={dailySalesChartData} options={dailySalesChartOptions} />
+                </div>
+              </div>
+            )}
             {/* Graph */}
             <div className="bg-white rounded-lg shadow p-6 mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Sales Trend (Current Week vs Previous Week)</h3>
