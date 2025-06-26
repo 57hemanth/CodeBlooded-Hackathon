@@ -521,17 +521,17 @@ const Dashboard = () => {
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Cappuccino</span>
                       <span className="text-2xl font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700">3%</span>
-                      <span className="text-xl font-bold text-blue-600 mb-1">567</span>
+                      <span className="text-md font-bold text-blue-600 mb-1">567</span>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Butter Croissant</span>
                       <span className="text-2xl font-medium px-3 py-1 rounded-full bg-green-50 text-green-700">2.3%</span>
-                      <span className="text-xl font-bold text-green-600 mb-1">388</span>
+                      <span className="text-md font-bold text-green-600 mb-1">388</span>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Alfredo</span>
                       <span className="text-2xl font-medium px-3 py-1 rounded-full bg-purple-50 text-purple-700">2.6%</span>
-                      <span className="text-xl font-bold text-purple-600 mb-1">254</span>
+                      <span className="text-md font-bold text-purple-600 mb-1">254</span>
                     </div>
                   </>
                 ) : (
