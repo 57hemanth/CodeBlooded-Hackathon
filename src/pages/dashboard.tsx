@@ -459,7 +459,7 @@ const Dashboard = () => {
               <Line data={insightsChartData} options={insightsChartOptions} />
             </div>
             {/* Top 3 Selling Products */}
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-lg shadow p-6 mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 3 Selling Products</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {selectedMonth === 'april' ? (
@@ -484,18 +484,55 @@ const Dashboard = () => {
                   <>
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Flat White</span>
-                      <span className="text-2xl font-bold text-blue-600 mb-1">483</span>
-                      <span className="text-sm font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700">3.7%</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700">3.7%</span>
+                      <span className="text-xl font-bold text-blue-600 mb-1">483</span>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Cappuccino</span>
-                      <span className="text-2xl font-bold text-green-600 mb-1">341</span>
-                      <span className="text-sm font-medium px-3 py-1 rounded-full bg-green-50 text-green-700">2.9%</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-green-50 text-green-700">2.9%</span>
+                      <span className="text-xl font-bold text-green-600 mb-1">341</span>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
                       <span className="font-semibold text-gray-900 text-lg mb-2">Butter Croissant</span>
-                      <span className="text-2xl font-bold text-purple-600 mb-1">287</span>
-                      <span className="text-sm font-medium px-3 py-1 rounded-full bg-purple-50 text-purple-700">2.5%</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-purple-50 text-purple-700">2.5%</span>
+                      <span className="text-xl font-bold text-purple-600 mb-1">287</span>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            {/* Top Selling Categories */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Selling Categories</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {selectedMonth === 'april' ? (
+                  <>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Sandwiches & Burgers</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-yellow-50 text-yellow-700">27%</span>
+                    </div>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Bagels & Croissants</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-pink-50 text-pink-700">19%</span>
+                    </div>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Deserts</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700">12%</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Bagels & Croissants</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-pink-50 text-pink-700">26%</span>
+                    </div>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Sandwiches & Burgers</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-yellow-50 text-yellow-700">17%</span>
+                    </div>
+                    <div className="rounded-xl border border-gray-200 bg-white shadow-md p-5 flex flex-col items-center hover:shadow-lg transition-shadow">
+                      <span className="font-semibold text-gray-900 text-lg mb-2">Breakfast</span>
+                      <span className="text-2xl font-medium px-3 py-1 rounded-full bg-green-50 text-green-700">9%</span>
                     </div>
                   </>
                 )}
