@@ -224,18 +224,22 @@ const Dashboard = () => {
         <span className="ml-1 text-sm font-medium">{restaurant.rating}</span>
       </div>
       <div className="flex justify-between items-center">
-        <span
-          className="text-lg font-bold text-green-600 cursor-pointer hover:underline"
-          onClick={() => navigate('/price-graph', {
-            state: {
-              platform,
-              restaurantName: restaurant.name,
-              productName,
-            },
-          })}
-        >
-          ₹{restaurant.price}
-        </span>
+        {platform === 'Competitors' ? (
+          <span className="text-lg font-bold text-green-600">₹{restaurant.price}</span>
+        ) : (
+          <span
+            className="text-lg font-bold text-green-600 cursor-pointer hover:underline"
+            onClick={() => navigate('/price-graph', {
+              state: {
+                platform,
+                restaurantName: restaurant.name,
+                productName,
+              },
+            })}
+          >
+            ₹{restaurant.price}
+          </span>
+        )}
         <span className="text-xs text-green-500 bg-green-100 px-2 py-1 rounded">
           {restaurant.discount} OFF
         </span>
@@ -329,19 +333,24 @@ const Dashboard = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Product Name
                   </label>
-                  <input
-                    type="text"
-                    value={productName}
-                    onChange={(e) => {
-                      setProductName(e.target.value);
-                      setShowSuggestions(true);
-                    }}
-                    onFocus={() => setShowSuggestions(true)}
-                    onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
-                    placeholder="Enter product name (e.g., Cappuccino)"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    autoComplete="off"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={productName}
+                      onChange={(e) => {
+                        setProductName(e.target.value);
+                        setShowSuggestions(true);
+                      }}
+                      onFocus={() => setShowSuggestions(true)}
+                      onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
+                      placeholder="Enter product name (e.g., Cappuccino)"
+                      className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      autoComplete="off"
+                    />
+                    <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                      <Search className="w-5 h-5 text-gray-400" />
+                    </span>
+                  </div>
                   {showSuggestions && productName && (
                     <div className="absolute z-10 bg-white border border-gray-200 rounded-md shadow-md mt-1 w-full max-w-xs">
                       {productSuggestions
@@ -364,27 +373,34 @@ const Dashboard = () => {
                     </div>
                   )}
                 </div>
-                <div className="w-full sm:w-48">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Filter Type
-                  </label>
-                  <select
-                    value={filterType}
-                    onChange={(e) => setFilterType(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                <div className="w-full sm:w-48 flex items-end gap-2">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Filter Type
+                    </label>
+                    <select
+                      value={filterType}
+                      onChange={(e) => setFilterType(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="Premium">Premium</option>
+                      <option value="Mid-tier">Mid-tier</option>
+                      <option value="Budget">Budget</option>
+                    </select>
+                  </div>
+                  <button
+                    type="button"
+                    className="ml-2 px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-100 transition"
+                    onClick={() => {
+                      setProductName('');
+                      setFilterType('Premium');
+                      setSearchResults(null);
+                      localStorage.removeItem('dashboardState');
+                    }}
                   >
-                    <option value="Premium">Premium</option>
-                    <option value="Mid-tier">Mid-tier</option>
-                    <option value="Budget">Budget</option>
-                  </select>
+                    Clear
+                  </button>
                 </div>
-                <button
-                  onClick={handleSearch}
-                  className="w-full sm:w-auto flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                >
-                  <Search className="w-4 h-4 mr-2" />
-                  Search
-                </button>
               </div>
             </div>
 
